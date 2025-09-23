@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT Pengetahuan Umum SMP Level Mudah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #e63946;
+            --warning: #ffb703;
+            --info: #219ebc;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: bounceIn 1s ease;
+        }
+        
+        .header p {
+            color: var(--dark);
+            font-size: 1.1rem;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+        
+        .btn:hover:after {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #d81159;
+            transform: translateY(-3px);
+        }
+        
+        .btn-lg {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+        }
+        
+        .login-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .profile-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            animation: slideInLeft 0.5s ease;
+        }
+        
+        .profile-card h3 {
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .profile-info {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-info i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .instructions {
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            animation: slideInRight 0.5s ease;
+        }
+        
+        .instructions h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .test-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        
+        .question-card {
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .question-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .option:hover {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .timer-container {
+            background: var(--dark);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+        
+        .timer {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--warning);
+        }
+        
+        .question-nav {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .question-nav-btn {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .question-nav-btn:hover {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .question-nav-btn.answered {
+            border-color: var(--success);
+            background: rgba(76, 201, 240, 0.2);
+        }
+        
+        .question-nav-btn.current {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.2);
+            font-weight: 600;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .admin-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .admin-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .admin-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .admin-card:hover i {
+            transform: scale(1.2);
+            color: var(--accent);
+        }
+        
+        .admin-card h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .result-container {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(var(--success) 0% var(--p), #ddd var(--p) 100%);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: grow 1s ease;
+        }
+        
+        .score-inner {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .analysis-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            animation: fadeIn 1s ease;
+        }
+        
+        .analysis-table th, .analysis-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .analysis-table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+        
+        .analysis-table tr {
+            transition: var(--transition);
+        }
+        
+        .analysis-table tr:hover {
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .correct {
+            color: var(--success);
+        }
+        
+        .incorrect {
+            color: var(--danger);
+        }
+        
+        .admin-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .admin-section.active {
+            display: block;
+        }
+        
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+        
+        /* Animasi Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes grow {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+        }
+        
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .dashboard-grid, .test-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .question-nav {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .admin-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Halaman Utama -->
+        <div id="home-page" class="card">
+            <div class="header">
+                <h1><i class="fas fa-brain"></i> CBT Pengetahuan Umum SMP Level Mudah</h1>
+                <p>Selamat datang di platform CBT matematika SMP Negeri 6 Amlapura. Selamat Mengerjakan!</p>
+            </div>
+            
+            <div class="login-container">
+                <button class="btn btn-primary btn-lg" onclick="showLogin('participant')">
+                    <i class="fas fa-user-graduate"></i> Login Sebagai Peserta
+                </button>
+                <button class="btn btn-secondary btn-lg" onclick="showLogin('admin')">
+                    <i class="fas fa-user-shield"></i> Login Sebagai Admin
+                </button>
+            </div>
+        </div>
+        
+        <!-- Halaman Login Peserta -->
+        <div id="login-participant-page" class="card hidden">
+            <div class="header">
+                <h2><i class="fas fa-sign-in-alt"></i> Login Peserta</h2>
+                <p>Masukkan data diri Anda untuk mengikuti CBT</p>
+            </div>
+            
+            <form id="participant-login-form">
+                <div class="form-group">
+                    <label for="participant-name"><i class="fas fa-user"></i> Nama Lengkap</label>
+                    <input type="text" id="participant-name" class="form-control" placeholder="Masukkan nama lengkap" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="participant-email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="participant-email" class="form-control" placeholder="Masukkan email yang terdaftar" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="participant-password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="participant-password" class="form-control" placeholder="Masukkan password" required>
+                </div>
+                
+                <button type="button" class="btn btn-primary" onclick="loginParticipant()">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="showHome()">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </button>
+            </form>
+        </div>
+        
+        <!-- Halaman Login Admin -->
+        <div id="login-admin-page" class="card hidden">
+            <div class="header">
+                <h2><i class="fas fa-sign-in-alt"></i> Login Admin</h2>
+                <p>Masukkan kredensial admin untuk mengelola sistem</p>
+            </div>
+            
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-email"><i class="fas fa-envelope"></i> Email Admin</label>
+                    <input type="email" id="admin-email" class="form-control" placeholder="Masukkan email admin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="admin-password"><i class="fas fa-lock"></i> Password Admin</label>
+                    <input type="password" id="admin-password" class="form-control" placeholder="Masukkan password admin" required>
+                </div>
+                
+                <button type="button" class="btn btn-primary" onclick="loginAdmin()">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="showHome()">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </button>
+            </form>
+        </div>
+        
+        <!-- Halaman Dashboard Peserta -->
+        <div id="dashboard-page" class="card hidden">
+            <div class="header">
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard Peserta</h2>
+                <p>Selamat datang di dashboard peserta CBT</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="profile-card">
+                    <h3><i class="fas fa-user-circle"></i> Profil Peserta</h3>
+                    <div class="profile-info">
+                        <i class="fas fa-user"></i> <span id="profile-name">Nama Peserta</span>
+                    </div>
+                    <div class="profile-info">
+                        <i class="fas fa-envelope"></i> <span id="profile-email">email@example.com</span>
+                    </div>
+                    <div class="profile-info">
+                        <i class="fas fa-graduation-cap"></i> <span id="profile-class">Kelas</span>
+                    </div>
+                    <div class="profile-info">
+                        <i class="fas fa-school"></i> <span id="profile-school">Asal Sekolah</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="instructions">
+                        <h3><i class="fas fa-info-circle"></i> Keterangan Lomba</h3>
+                        <ol>
+                            <li><strong>Waktu Pengerjaan:</strong> Pastikan Anda memahami waktu yang diberikan untuk mengerjakan soal. Waktu pengerjaan adalah 120 menit.</li>
+                            <li><strong>Jumlah Soal:</strong> Terdapat 40 soal yang harus dikerjakan dalam waktu yang ditentukan.</li>
+                            <li><strong>Pilih Jawaban:</strong> Pilih jawaban yang paling tepat untuk setiap soal.</li>
+                            <li><strong>Navigasi:</strong> Anda dapat berpindah antar soal menggunakan tombol navigasi yang disediakan.</li>
+                            <li><strong>Pengiriman Jawaban:</strong> Setelah selesai, klik tombol "Kirim" untuk mengirimkan jawaban Anda.</li>
+                            <li><strong>Koneksi Internet:</strong> Pastikan koneksi internet Anda stabil selama pengerjaan soal.</li>
+                            <li><strong>Tidak Ada Diskusi:</strong> Anda tidak diperbolehkan berdiskusi dengan peserta lain.</li>
+                            <li><strong>Tidak Ada Bantuan:</strong> Anda tidak diperbolehkan menggunakan bantuan lain seperti buku atau catatan.</li>
+                            <li><strong>Periksa Jawaban:</strong> Pastikan Anda telah memeriksa semua jawaban sebelum mengirim.</li>
+                            <li><strong>Kepatuhan:</strong> Patuhi semua peraturan yang diberikan.</li>
+                        </ol>
+                    </div>
+                    
+                    <button class="btn btn-accent btn-lg" style="width: 100%;" onclick="startTest()">
+                        <i class="fas fa-play-circle"></i> Mulai Tes
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Halaman Tes -->
+        <div id="test-page" class="card hidden">
+            <div class="header">
+                <h2><i class="fas fa-pencil-alt"></i> Tes Pengetahuan Umum</h2>
+                <p>Jawablah semua soal dengan tepat dan teliti</p>
+            </div>
+            
+            <div class="test-container">
+                <div>
+                    <div class="question-card">
+                        <div class="question-number">Soal <span id="current-question">1</span> dari <span id="total-questions">40</span></div>
+                        <div class="question-text" id="question-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies ultricies, nunc nisl aliquam nunc, eget aliquam nisl nunc eget nunc?
+                        </div>
+                        
+                        <div class="options-container" id="options-container">
+                            <div class="option" onclick="selectOption(0)">A. Option 1</div>
+                            <div class="option" onclick="selectOption(1)">B. Option 2</div>
+                            <div class="option" onclick="selectOption(2)">C. Option 3</div>
+                            <div class="option" onclick="selectOption(3)">D. Option 4</div>
+                        </div>
+                    </div>
+                    
+                    <div class="navigation-buttons">
+                        <button class="btn btn-secondary" onclick="previousQuestion()">
+                            <i class="fas fa-arrow-left"></i> Soal Sebelumnya
+                        </button>
+                        <button class="btn btn-primary" onclick="nextQuestion()">
+                            Soal Selanjutnya <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="timer-container">
+                        <h3><i class="fas fa-clock"></i> Sisa Waktu</h3>
+                        <div class="timer" id="timer">120:00</div>
+                        <p>menit:detik</p>
+                    </div>
+                    
+                    <div class="question-nav" id="question-nav">
+                        <!-- Dinamis diisi dengan JavaScript -->
+                    </div>
+                    
+                    <button class="btn btn-accent" style="width: 100%; margin-top: 20px;" onclick="submitTest()">
+                        <i class="fas fa-paper-plane"></i> Kirim Jawaban
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Halaman Hasil -->
+        <div id="result-page" class="card hidden">
+            <div class="result-container">
+                <h2><i class="fas fa-medal"></i> Hasil Tes Pengetahuan Umum</h2>
+                <p>Selamat! Anda telah menyelesaikan tes</p>
+                
+                <div class="score-circle" id="score-circle" style="--p: 70%">
+                    <div class="score-inner">
+                        <span id="score-value">85</span>
+                    </div>
+                </div>
+                
+                <h3>Skor Anda: <span id="final-score">85</span> dari 100</h3>
+                
+                <div class="table-responsive">
+                    <table class="analysis-table">
+                        <thead>
+                            <tr>
+                                <th>Soal</th>
+                                <th>Jawaban Anda</th>
+                                <th>Jawaban Benar</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="analysis-table-body">
+                            <!-- Dinamis diisi dengan JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <button class="btn btn-primary" onclick="showHome()">
+                    <i class="fas fa-home"></i> Kembali ke Beranda
+                </button>
+            </div>
+        </div>
+        
+        <!-- Halaman Admin -->
+        <div id="admin-page" class="card hidden">
+            <div class="header">
+                <h2><i class="fas fa-cogs"></i> Panel Admin</h2>
+                <p>Kelola peserta, soal, dan hasil tes</p>
+            </div>
+            
+            <div class="admin-panel">
+                <div class="admin-card" onclick="showAdminSection('participants')">
+                    <i class="fas fa-users"></i>
+                    <h3>Kelola Peserta</h3>
+                    <p>Daftarkan dan kelola peserta CBT</p>
+                </div>
+                
+                <div class="admin-card" onclick="showAdminSection('questions')">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>Kelola Soal</h3>
+                    <p>Tambah dan edit soal serta jawaban</p>
+                </div>
+                
+                <div class="admin-card" onclick="showAdminSection('results')">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Lihat Hasil</h3>
+                    <p>Lihat dan kelola hasil peserta</p>
+                </div>
+                
+                <div class="admin-card" onclick="showAdminSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    <h3>Pengaturan</h3>
+                    <p>Pengaturan sistem CBT</p>
+                </div>
+            </div>
+            
+            <!-- Section Kelola Peserta -->
+            <div id="admin-participants" class="admin-section">
+                <h3><i class="fas fa-users"></i> Kelola Peserta</h3>
+                <div class="form-group">
+                    <button class="btn btn-primary" onclick="addParticipant()">
+                        <i class="fas fa-plus"></i> Tambah Peserta
+                    </button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="analysis-table">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Kelas</th>
+                                <th>Sekolah</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participants-table-body">
+                            <!-- Dinamis diisi dengan JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Section Kelola Soal -->
+            <div id="admin-questions" class="admin-section">
+                <h3><i class="fas fa-question-circle"></i> Kelola Soal</h3>
+                <div class="form-group">
+                    <button class="btn btn-primary" onclick="addQuestion()">
+                        <i class="fas fa-plus"></i> Tambah Soal
+                    </button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="analysis-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Pertanyaan</th>
+                                <th>Jawaban Benar</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="questions-table-body">
+                            <!-- Dinamis diisi dengan JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Section Lihat Hasil -->
+            <div id="admin-results" class="admin-section">
+                <h3><i class="fas fa-chart-bar"></i> Hasil Peserta</h3>
+                
+                <div class="table-responsive">
+                    <table class="analysis-table">
+                        <thead>
+                            <tr>
+                                <th>Peringkat</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Sekolah</th>
+                                <th>Skor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-table-body">
+                            <!-- Dinamis diisi dengan JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Section Pengaturan -->
+            <div id="admin-settings" class="admin-section">
+                <h3><i class="fas fa-cog"></i> Pengaturan Sistem</h3>
+                
+                <div class="form-group">
+                    <label>Waktu Pengerjaan (menit)</label>
+                    <input type="number" class="form-control" id="test-duration" value="120" min="1">
+                </div>
+                
+                <div class="form-group">
+                    <label>Jumlah Soal</label>
+                    <input type="number" class="form-control" id="test-questions" value="40" min="1">
+                </div>
+                
+                <div class="form-group">
+                    <label>Skor Benar</label>
+                    <input type="number" class="form-control" id="score-correct" value="2" min="0">
+                </div>
+                
+                <div class="form-group">
+                    <label>Skor Salah</label>
+                    <input type="number" class="form-control" id="score-wrong" value="-1" max="0">
+                </div>
+                
+                <div class="form-group">
+                    <label>Skor Tidak Dijawab</label>
+                    <input type="number" class="form-control" id="score-empty" value="0" max="0">
+                </div>
+                
+                <button class="btn btn-primary">
+                    <i class="fas fa-save"></i> Simpan Pengaturan
+                </button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-primary" onclick="showHome()">
+                    <i class="fas fa-home"></i> Kembali ke Beranda
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data simulasi
+        let registeredParticipants = [
+            { id: 1, name: "Budi Santoso", email: "budi@example.com", password: "password123", class: "VIII", school: "SMP Negeri 6 Amlapura" },
+            { id: 2, name: "Siti Rahayu", email: "siti@example.com", password: "password123", class: "VIII", school: "SMP Negeri 6 Amlapura" },
+            { id: 3, name: "Ahmad Fauzi", email: "ahmad@example.com", password: "password123", class: "VIII", school: "SMP Negeri 6 Amlapura" }
+        ];
+        
+        const adminAccount = { email: "admin@cbt.com", password: "admin123" };
+        
+        let questions = [
+            {
+                id: 1,
+                question: "Berapakah hasil dari 8 × 7?",
+                options: ["54", "56", "58", "60"],
+                correctAnswer: 1
+            },
+            {
+                id: 2,
+                question: "Apa ibukota Indonesia?",
+                options: ["Jakarta", "Surabaya", "Bandung", "Medan"],
+                correctAnswer: 0
+            },
+            {
+                id: 3,
+                question: "Bilangan prima yang terkecil adalah?",
+                options: ["0", "1", "2", "3"],
+                correctAnswer: 2
+            },
+            {
+                id: 4,
+                question: "Planet terdekat dari matahari adalah?",
+                options: ["Venus", "Bumi", "Mars", "Merkurius"],
+                correctAnswer: 3
+            }
+        ];
+        
+        let testResults = [];
+        
+        // Variabel state
+        let currentPage = 'home-page';
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let timeLeft = 120 * 60; // 120 menit dalam detik
+        let timerInterval;
+        let currentUser = null;
+        
+        // Fungsi navigasi halaman
+        function showPage(pageId) {
+            document.getElementById(currentPage).classList.add('hidden');
+            document.getElementById(pageId).classList.remove('hidden');
+            currentPage = pageId;
+            
+            // Jika halaman admin, tampilkan section pertama
+            if (pageId === 'admin-page') {
+                showAdminSection('participants');
+            }
+        }
+        
+        function showHome() {
+            showPage('home-page');
+            // Reset state
+            currentUser = null;
+            userAnswers = [];
+            clearInterval(timerInterval);
+        }
+        
+        function showLogin(role) {
+            if (role === 'participant') {
+                showPage('login-participant-page');
+            } else {
+                showPage('login-admin-page');
+            }
+        }
+        
+        function loginParticipant() {
+            const email = document.getElementById('participant-email').value;
+            const password = document.getElementById('participant-password').value;
+            const name = document.getElementById('participant-name').value;
+            
+            const participant = registeredParticipants.find(p => 
+                p.email === email && p.password === password && p.name === name
+            );
+            
+            if (participant) {
+                currentUser = participant;
+                
+                // Update profil
+                document.getElementById('profile-name').textContent = participant.name;
+                document.getElementById('profile-email').textContent = participant.email;
+                document.getElementById('profile-class').textContent = participant.class;
+                document.getElementById('profile-school').textContent = participant.school;
+                
+                showPage('dashboard-page');
+            } else {
+                alert('Email, nama, atau password salah. Silakan coba lagi.');
+                document.getElementById('participant-login-form').classList.add('shake');
+                setTimeout(() => {
+                    document.getElementById('participant-login-form').classList.remove('shake');
+                }, 500);
+            }
+        }
+        
+        function loginAdmin() {
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            
+            if (email === adminAccount.email && password === adminAccount.password) {
+                showPage('admin-page');
+                loadAdminData();
+            } else {
+                alert('Email atau password admin salah. Silakan coba lagi.');
+                document.getElementById('admin-login-form').classList.add('shake');
+                setTimeout(() => {
+                    document.getElementById('admin-login-form').classList.remove('shake');
+                }, 500);
+            }
+        }
+        
+        function startTest() {
+            // Inisialisasi jawaban user
+            userAnswers = Array(questions.length).fill(null);
+            
+            // Setup navigasi soal
+            const questionNav = document.getElementById('question-nav');
+            questionNav.innerHTML = '';
+            
+            for (let i = 0; i < questions.length; i++) {
+                const button = document.createElement('div');
+                button.className = 'question-nav-btn';
+                button.textContent = i + 1;
+                button.onclick = () => goToQuestion(i);
+                questionNav.appendChild(button);
+            }
+            
+            // Set total questions
+            document.getElementById('total-questions').textContent = questions.length;
+            
+            // Mulai timer
+            startTimer();
+            
+            // Tampilkan soal pertama
+            showQuestion(0);
+            showPage('test-page');
+        }
+        
+        function startTimer() {
+            clearInterval(timerInterval);
+            
+            // Set waktu sesuai pengaturan
+            timeLeft = parseInt(document.getElementById('test-duration').value) * 60 || 120 * 60;
+            
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                    return;
+                }
+                
+                updateTimerDisplay();
+            }, 1000);
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+            // Ubah warna timer jika waktu hampir habis
+            if (timeLeft < 300) { // Kurang dari 5 menit
+                document.getElementById('timer').style.color = 'var(--danger)';
+            }
+        }
+        
+        function showQuestion(index) {
+            if (index < 0 || index >= questions.length) return;
+            
+            currentQuestionIndex = index;
+            
+            const question = questions[index];
+            document.getElementById('current-question').textContent = index + 1;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (userAnswers[index] === i) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = String.fromCharCode(65 + i) + '. ' + option;
+                optionElement.onclick = () => selectOption(i);
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigasi
+            const navButtons = document.querySelectorAll('.question-nav-btn');
+            navButtons.forEach((btn, i) => {
+                btn.classList.remove('current', 'answered');
+                if (i === index) {
+                    btn.classList.add('current');
+                }
+                if (userAnswers[i] !== null) {
+                    btn.classList.add('answered');
+                }
+            });
+        }
+        
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestionIndex] = optionIndex;
+            
+            const options = document.querySelectorAll('.option');
+            options.forEach((opt, i) => {
+                if (i === optionIndex) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+            
+            // Tandai soal telah dijawab di navigasi
+            const navButtons = document.querySelectorAll('.question-nav-btn');
+            navButtons[currentQuestionIndex].classList.add('answered');
+        }
+        
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                showQuestion(currentQuestionIndex + 1);
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        }
+        
+        function goToQuestion(index) {
+            showQuestion(index);
+        }
+        
+        function submitTest() {
+            clearInterval(timerInterval);
+            
+            // Hitung skor
+            const scoreCorrect = parseInt(document.getElementById('score-correct').value) || 2;
+            const scoreWrong = parseInt(document.getElementById('score-wrong').value) || -1;
+            const scoreEmpty = parseInt(document.getElementById('score-empty').value) || 0;
+            
+            let score = 0;
+            questions.forEach((question, index) => {
+                if (userAnswers[index] === question.correctAnswer) {
+                    score += scoreCorrect; // Benar
+                } else if (userAnswers[index] !== null) {
+                    score += scoreWrong; // Salah
+                } else {
+                    score += scoreEmpty; // Tidak dijawab
+                }
+            });
+            
+            // Konversi ke skala 100
+            const maxScore = questions.length * scoreCorrect;
+            const finalScore = Math.max(0, Math.round((score / maxScore) * 100));
+            
+            // Simpan hasil
+            testResults.push({
+                participant: currentUser,
+                score: finalScore,
+                answers: [...userAnswers],
+                timestamp: new Date()
+            });
+            
+            // Tampilkan skor
+            document.getElementById('final-score').textContent = finalScore;
+            document.getElementById('score-value').textContent = finalScore;
+            
+            // Set progress circle
+            const progress = (finalScore / 100) * 100;
+            document.getElementById('score-circle').style.setProperty('--p', `${progress}%`);
+            
+            // Isi tabel analisis
+            const tableBody = document.getElementById('analysis-table-body');
+            tableBody.innerHTML = '';
+            
+            questions.forEach((question, index) => {
+                const row = document.createElement('tr');
+                
+                const questionCell = document.createElement('td');
+                questionCell.textContent = `Soal ${index + 1}`;
+                
+                const userAnswerCell = document.createElement('td');
+                userAnswerCell.textContent = userAnswers[index] !== null 
+                    ? String.fromCharCode(65 + userAnswers[index])
+                    : 'Tidak dijawab';
+                
+                const correctAnswerCell = document.createElement('td');
+                correctAnswerCell.textContent = String.fromCharCode(65 + question.correctAnswer);
+                
+                const statusCell = document.createElement('td');
+                if (userAnswers[index] === question.correctAnswer) {
+                    statusCell.textContent = 'Benar';
+                    statusCell.classList.add('correct');
+                } else if (userAnswers[index] === null) {
+                    statusCell.textContent = 'Tidak dijawab';
+                } else {
+                    statusCell.textContent = 'Salah';
+                    statusCell.classList.add('incorrect');
+                }
+                
+                row.appendChild(questionCell);
+                row.appendChild(userAnswerCell);
+                row.appendChild(correctAnswerCell);
+                row.appendChild(statusCell);
+                
+                tableBody.appendChild(row);
+            });
+            
+            showPage('result-page');
+        }
+        
+        function showAdminSection(section) {
+            // Sembunyikan semua section
+            document.querySelectorAll('.admin-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Tampilkan section yang dipilih
+            document.getElementById(`admin-${section}`).classList.add('active');
+        }
+        
+        function loadAdminData() {
+            // Load data peserta
+            const participantsTable = document.getElementById('participants-table-body');
+            participantsTable.innerHTML = '';
+            
+            registeredParticipants.forEach(participant => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${participant.name}</td>
+                    <td>${participant.email}</td>
+                    <td>${participant.class}</td>
+                    <td>${participant.school}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="editParticipant(${participant.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteParticipant(${participant.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                participantsTable.appendChild(row);
+            });
+            
+            // Load data soal
+            const questionsTable = document.getElementById('questions-table-body');
+            questionsTable.innerHTML = '';
+            
+            questions.forEach(question => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${question.id}</td>
+                    <td>${question.question.substring(0, 50)}...</td>
+                    <td>${String.fromCharCode(65 + question.correctAnswer)}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="editQuestion(${question.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteQuestion(${question.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                questionsTable.appendChild(row);
+            });
+            
+            // Load data hasil
+            const resultsTable = document.getElementById('results-table-body');
+            resultsTable.innerHTML = '';
+            
+            // Urutkan hasil berdasarkan skor
+            const sortedResults = [...testResults].sort((a, b) => b.score - a.score);
+            
+            sortedResults.forEach((result, index) => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${result.participant.name}</td>
+                    <td>${result.participant.email}</td>
+                    <td>${result.participant.school}</td>
+                    <td>${result.score}</td>
+                `;
+                
+                resultsTable.appendChild(row);
+            });
+        }
+        
+        function addParticipant() {
+            const name = prompt("Masukkan nama peserta:");
+            if (!name) return;
+            
+            const email = prompt("Masukkan email peserta:");
+            if (!email) return;
+            
+            const password = prompt("Masukkan password peserta:");
+            if (!password) return;
+            
+            const kelas = prompt("Masukkan kelas peserta:");
+            if (!kelas) return;
+            
+            const school = prompt("Masukkan asal sekolah peserta:");
+            if (!school) return;
+            
+            const newParticipant = {
+                id: registeredParticipants.length + 1,
+                name,
+                email,
+                password,
+                class: kelas,
+                school
+            };
+            
+            registeredParticipants.push(newParticipant);
+            loadAdminData();
+            alert("Peserta berhasil ditambahkan!");
+        }
+        
+        function editParticipant(id) {
+            const participant = registeredParticipants.find(p => p.id === id);
+            if (!participant) return;
+            
+            const name = prompt("Edit nama peserta:", participant.name);
+            if (!name) return;
+            
+            const email = prompt("Edit email peserta:", participant.email);
+            if (!email) return;
+            
+            const password = prompt("Edit password peserta:", participant.password);
+            if (!password) return;
+            
+            const kelas = prompt("Edit kelas peserta:", participant.class);
+            if (!kelas) return;
+            
+            const school = prompt("Edit asal sekolah peserta:", participant.school);
+            if (!school) return;
+            
+            participant.name = name;
+            participant.email = email;
+            participant.password = password;
+            participant.class = kelas;
+            participant.school = school;
+            
+            loadAdminData();
+            alert("Data peserta berhasil diupdate!");
+        }
+        
+        function deleteParticipant(id) {
+            if (!confirm("Apakah Anda yakin ingin menghapus peserta ini?")) return;
+            
+            registeredParticipants = registeredParticipants.filter(p => p.id !== id);
+            loadAdminData();
+            alert("Peserta berhasil dihapus!");
+        }
+        
+        function addQuestion() {
+            const question = prompt("Masukkan pertanyaan:");
+            if (!question) return;
+            
+            const options = [];
+            for (let i = 0; i < 4; i++) {
+                const option = prompt(`Masukkan opsi jawaban ${String.fromCharCode(65 + i)}:`);
+                if (!option) return;
+                options.push(option);
+            }
+            
+            const correctAnswer = prompt("Masukkan huruf jawaban yang benar (A, B, C, atau D):");
+            if (!correctAnswer) return;
+            
+            let correctIndex;
+            switch (correctAnswer.toUpperCase()) {
+                case 'A': correctIndex = 0; break;
+                case 'B': correctIndex = 1; break;
+                case 'C': correctIndex = 2; break;
+                case 'D': correctIndex = 3; break;
+                default: alert("Jawaban tidak valid!"); return;
+            }
+            
+            const newQuestion = {
+                id: questions.length + 1,
+                question,
+                options,
+                correctAnswer: correctIndex
+            };
+            
+            questions.push(newQuestion);
+            loadAdminData();
+            alert("Soal berhasil ditambahkan!");
+        }
+        
+        function editQuestion(id) {
+            const question = questions.find(q => q.id === id);
+            if (!question) return;
+            
+            const newQuestion = prompt("Edit pertanyaan:", question.question);
+            if (!newQuestion) return;
+            
+            const options = [];
+            for (let i = 0; i < 4; i++) {
+                const option = prompt(`Edit opsi jawaban ${String.fromCharCode(65 + i)}:`, question.options[i]);
+                if (!option) return;
+                options.push(option);
+            }
+            
+            const correctAnswer = prompt("Edit huruf jawaban yang benar (A, B, C, atau D):", String.fromCharCode(65 + question.correctAnswer));
+            if (!correctAnswer) return;
+            
+            let correctIndex;
+            switch (correctAnswer.toUpperCase()) {
+                case 'A': correctIndex = 0; break;
+                case 'B': correctIndex = 1; break;
+                case 'C': correctIndex = 2; break;
+                case 'D': correctIndex = 3; break;
+                default: alert("Jawaban tidak valid!"); return;
+            }
+            
+            question.question = newQuestion;
+            question.options = options;
+            question.correctAnswer = correctIndex;
+            
+            loadAdminData();
+            alert("Soal berhasil diupdate!");
+        }
+        
+        function deleteQuestion(id) {
+            if (!confirm("Apakah Anda yakin ingin menghapus soal ini?")) return;
+            
+            questions = questions.filter(q => q.id !== id);
+            loadAdminData();
+            alert("Soal berhasil dihapus!");
+        }
+        
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home-page');
+            
+            // Animasi untuk tombol di halaman utama
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.transform = 'translateY(-3px)';
+                });
+                
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
