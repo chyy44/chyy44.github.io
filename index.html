@@ -3,662 +3,1153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Kelompok - Tugas Teks Prosedur Pangsit Ikan Tongkol</title>
+    <title>Nugget Ikan Tongkol - Kelompok 1</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Reset dan variabel */
-        :root {
-            --primary: #3498db;
-            --secondary: #2c3e50;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-        
+        /* Reset dan Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
+        :root {
+            --primary: #FF9E44;
+            --primary-dark: #E67E22;
+            --secondary: #2ECC71;
+            --accent: #FF6B6B;
+            --light: #FFF9E6;
+            --dark: #2C3E50;
+            --gray: #ECF0F1;
+            --text: #34495E;
+        }
+
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
         }
-        
-        /* Header dan Navigasi */
-        header {
-            background: linear-gradient(to right, var(--secondary), var(--primary));
-            color: white;
-            padding: 1rem 0;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
+
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        
-        .header-content {
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
         }
-        
+
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: bold;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            font-family: 'Playfair Display', serif;
         }
-        
+
         .logo i {
-            color: var(--accent);
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            transition: var(--transition);
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        nav ul li a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        nav ul li a.active {
-            background: var(--accent);
-        }
-        
-        /* Konten Utama */
-        main {
-            padding: 3rem 0;
-            min-height: calc(100vh - 150px);
-        }
-        
-        .page {
-            display: none;
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            animation: fadeIn 0.8s ease;
-            transform-origin: top center;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        h1 {
             color: var(--secondary);
-            margin-bottom: 1.5rem;
-            font-size: 2.5rem;
-            position: relative;
-            padding-bottom: 15px;
+            font-size: 1.6rem;
         }
-        
-        h1:after {
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 80px;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 180px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            animation: fadeInUp 1.5s ease;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 155, 68, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(255, 155, 68, 0.4);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            display: inline-block;
+            padding-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
             height: 4px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
         }
-        
-        h2 {
-            color: var(--primary);
-            margin: 1.5rem 0 1rem;
-            font-size: 1.8rem;
-        }
-        
-        p {
-            margin-bottom: 1.2rem;
-            font-size: 1.1rem;
-        }
-        
-        /* Home Page */
-        .welcome-section {
-            text-align: center;
-            padding: 3rem 0;
-        }
-        
-        .welcome-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-        
-        .description {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            color: #555;
-        }
-        
+
+        /* Home Section */
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
-        
+
         .feature-card {
             background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            border-radius: 15px;
+            padding: 40px 30px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-        
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
-        
+
         .feature-card i {
             font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
+
         .feature-card h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 1.4rem;
         }
-        
-        /* Profil Kelompok */
-        .profile-content {
+
+        .feature-card p {
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        /* Profile Section */
+        .profile-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .motto {
+            background: linear-gradient(135deg, var(--light), white);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 40px 0;
+            font-style: italic;
+            position: relative;
+            font-size: 1.3rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+        }
+
+        .motto::before, .motto::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .motto::before {
+            top: 10px;
+            left: 15px;
+        }
+
+        .motto::after {
+            bottom: 10px;
+            right: 15px;
+        }
+
+        .members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .member {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .member-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .member-name {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        /* Gallery Section */
+        .gallery-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .gallery-description {
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            color: var(--text);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gallery-placeholder {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--light), white);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 2px dashed var(--primary);
+            transition: all 0.4s;
         }
-        
-        .profile-img-container {
-            width: 250px;
-            height: 250px;
+
+        .gallery-placeholder:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .gallery-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 2rem;
-            border: 5px solid var(--primary);
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-        
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .profile-img-container:hover .profile-img {
-            transform: scale(1.1);
-        }
-        
-        .members-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            width: 100%;
-            margin-top: 2rem;
-        }
-        
-        .member-card {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .member-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            background: white;
-        }
-        
-        .member-card h3 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Galeri */
-        .gallery-content {
-            text-align: center;
-        }
-        
-        .drive-link {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 10px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            justify-content: center;
+            margin-bottom: 25px;
             color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            margin-top: 2rem;
-            transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-            animation: bounce 2s infinite;
+            font-size: 2.5rem;
+            animation: pulse 2s infinite;
         }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+
+        .gallery-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 500;
         }
-        
-        .drive-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.6);
+
+        .gallery-subtext {
+            color: var(--text);
+            opacity: 0.8;
+            margin-bottom: 30px;
+            max-width: 500px;
         }
-        
-        .drive-link i {
-            font-size: 1.5rem;
+
+        .gallery-link {
+            text-align: center;
+            margin-top: 20px;
         }
-        
-        /* Bahan dan Langkah */
-        .ingredients-list, .steps-list {
-            list-style: none;
-            counter-reset: item-counter;
+
+        /* Ingredients Section */
+        .ingredients-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
-        .ingredients-list li, .steps-list li {
-            margin-bottom: 1.2rem;
-            padding-left: 3rem;
+
+        .ingredient-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
             position: relative;
+            overflow: hidden;
+        }
+
+        .ingredient-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .ingredient-list {
+            list-style: none;
+        }
+
+        .ingredient-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .ingredient-list li:hover {
+            padding-left: 10px;
+        }
+
+        .ingredient-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ingredient-list i {
+            color: var(--secondary);
+            margin-right: 15px;
             font-size: 1.1rem;
         }
-        
-        .ingredients-list li:before, .steps-list li:before {
-            counter-increment: item-counter;
-            content: counter(item-counter);
+
+        /* Steps Section */
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
             position: absolute;
-            left: 0;
             top: 0;
-            width: 2rem;
-            height: 2rem;
-            background: var(--primary);
+            bottom: 0;
+            left: 40px;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.8rem;
             font-weight: bold;
+            margin-right: 40px;
+            flex-shrink: 0;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(255, 155, 68, 0.3);
         }
-        
-        .steps-list li:before {
-            background: var(--accent);
+
+        .step-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            flex: 1;
+            transition: all 0.3s;
         }
-        
-        .recipe-image {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            margin: 2rem auto;
+
+        .step-content:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .step-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
             display: block;
-            box-shadow: var(--shadow);
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
         }
-        
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f9f9f9;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 158, 68, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
         /* Footer */
         footer {
-            background: var(--secondary);
+            background: linear-gradient(135deg, var(--dark), #1a2530);
             color: white;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 50px 0 30px;
+            margin-top: 50px;
         }
-        
+
         .footer-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 1rem;
+            gap: 20px;
         }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
         }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: var(--transition);
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        
-        .social-links a:hover {
-            color: var(--primary);
-            transform: translateY(-5px);
-        }
-        
-        /* Responsif */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
             }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .welcome-title {
-                font-size: 2.5rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .members-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
+            to { 
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-        
-        /* Animasi tambahan */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        
-        @keyframes floating {
-            0% { transform: translate(0, 0px); }
-            50% { transform: translate(0, 15px); }
-            100% { transform: translate(0, -0px); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Efek partikel */
-        .particles {
-            position: absolute;
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: -1;
+            background: linear-gradient(135deg, var(--dark), #1a2530);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
         }
-        
-        .particle {
-            position: absolute;
-            background: rgba(52, 152, 219, 0.2);
+
+        .loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            animation: float 15s infinite linear;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+            position: relative;
         }
-        
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-1000%) translateX(1000%); opacity: 0; }
+
+        .loader::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 5px solid transparent;
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating Elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                border-radius: 0 0 15px 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                padding: 150px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .steps-container::before {
+                left: 30px;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-right: 25px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .gallery-placeholder {
+                padding: 40px 25px;
+            }
+            
+            .gallery-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card, .ingredient-card, .contact-form {
+                padding: 25px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
-    
+    <!-- Loading Animation -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header & Navigation -->
     <header>
         <div class="container">
-            <div class="header-content">
+            <nav class="navbar">
                 <div class="logo">
-                    <i class="fas fa-utensils"></i>
-                    <span>Web Kelompok Tugas Teks Prosedur</span>
+                    <i class="fas fa-fish"></i>
+                    <span>Nugget Ikan Tongkol</span>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="nav-link active" onclick="showPage('home')">Home</a></li>
-                        <li><a href="#" class="nav-link" onclick="showPage('profil')">Profil Kelompok</a></li>
-                        <li><a href="#" class="nav-link" onclick="showPage('galeri')">Galeri Dokumentasi</a></li>
-                        <li><a href="#" class="nav-link" onclick="showPage('bahan')">Bahan-Bahan</a></li>
-                        <li><a href="#" class="nav-link" onclick="showPage('langkah')">Langkah-Langkah</a></li>
-                    </ul>
-                </nav>
-            </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" class="nav-link active" data-target="home">Beranda</a></li>
+                    <li><a href="#" class="nav-link" data-target="profile">Profil Kelompok</a></li>
+                    <li><a href="#" class="nav-link" data-target="gallery">Galeri Dokumentasi</a></li>
+                    <li><a href="#" class="nav-link" data-target="ingredients">Bahan-Bahan</a></li>
+                    <li><a href="#" class="nav-link" data-target="steps">Langkah-Langkah</a></li>
+                    <li><a href="#" class="nav-link" data-target="contact">Kontak/Saran</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
         </div>
     </header>
-    
-    <main>
+
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <!-- Halaman Home -->
-            <section id="home" class="page active">
-                <div class="welcome-section">
-                    <h1 class="welcome-title floating">Selamat Datang di Web Kelompok for chyaa</h1>
-                    <p class="description">Web ini dibuat untuk menyajikan hasil kerja kelompok kami dalam bentuk teks prosedur, mulai dari bahan, langkah-langkah, hingga dokumentasi tugas kokurikuler.</p>
-                    <p class="description">Dalam Tugas Teks Prosedur Pembuatan Pangsit Ikan Tongkol</p>
-                    
-                    <div class="features">
-                        <div class="feature-card">
-                            <i class="fas fa-users"></i>
-                            <h3>Profil Kelompok</h3>
-                            <p>Kenali anggota kelompok kami yang berdedikasi</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-images"></i>
-                            <h3>Galeri Dokumentasi</h3>
-                            <p>Lihat dokumentasi lengkap proses pembuatan pangsit</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-list"></i>
-                            <h3>Bahan-Bahan</h3>
-                            <p>Semua bahan yang diperlukan untuk membuat pangsit ikan tongkol</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-mortar-pestle"></i>
-                            <h3>Langkah-Langkah</h3>
-                            <p>Panduan lengkap membuat pangsit ikan tongkol yang lezat</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Halaman Profil Kelompok -->
-            <section id="profil" class="page">
-                <h1>Profil Kelompok 1</h1>
-                <div class="profile-content">
-                    <div class="profile-img-container">
-                        <img src="foto/ilustrasi-kelompok.png" alt="Logo Kelompok" class="profile-img">
-                    </div>
-                    
-                    <h2>Daftar Anggota:</h2>
-                    <div class="members-grid">
-                        <div class="member-card">
-                            <h3>I Putu Cahya Pradnyan Perdana</h3>
-                            <p>Ketua Kelompok</p>
-                        </div>
-                        <div class="member-card">
-                            <h3>I Ketut Aris</h3>
-                            <p>Anggota</p>
-                        </div>
-                        <div class="member-card">
-                            <h3>Ni Kadek Lestira Depi</h3>
-                            <p>Anggota</p>
-                        </div>
-                        <div class="member-card">
-                            <h3>Ni Ketut Merwi</h3>
-                            <p>Anggota</p>
-                        </div>
-                        <div class="member-card">
-                            <h3>Ni Kadek Dewi Natalia</h3>
-                            <p>Anggota</p>
-                        </div>
-                        <div class="member-card">
-                            <h3>Ni Made Linatari</h3>
-                            <p>Anggota</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Halaman Galeri Dokumentasi -->
-            <section id="galeri" class="page">
-                <h1>Galeri Dokumentasi Kelompok 1</h1>
-                <div class="gallery-content">
-                    <p>Dokumentasi tugas kelompok kami berupa google drive bisa disimak di link berikut.</p>
-                    <a href="https://drive.google.com/file/d/1qqWvBGPT5NPTurAsjA1GME23VFFyqiOR/view?usp=drivesdk" target="_blank" class="drive-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Open me!</span>
-                    </a>
-                </div>
-            </section>
-            
-            <!-- Halaman Bahan-Bahan -->
-            <section id="bahan" class="page">
-                <h1>Bahan-Bahan Pembuatan Pangsit Ikan Tongkol</h1>
-                <ol class="ingredients-list">
-                    <li>200gram ikan tongkol yang sudah direbus</li>
-                    <li>2 siung bawang putih, cincang halus</li>
-                    <li>2 batang daun bawang, iris tipis</li>
-                    <li>1 butir telur</li>
-                    <li>½ sendok teh garam</li>
-                    <li>½ sendok teh merica</li>
-                    <li>Kulit pangsit</li>
-                    <li>Minyak goreng secukupnya</li>
-                </ol>
-                
-                <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Bahan-bahan Pangsit" class="recipe-image">
-            </section>
-            
-            <!-- Halaman Langkah-Langkah -->
-            <section id="langkah" class="page">
-                <h1>Langkah-Langkah Membuat Pangsit Ikan Tongkol</h1>
-                <ol class="steps-list">
-                    <li>Pertama, siapkan semua bahan yang diperlukan.</li>
-                    <li>Selanjutnya, haluskan ikan tongkol yang sudah direbus hingga lembut.</li>
-                    <li>Kemudian, tambahkan bawang putih, daun bawang, garam, merica, dan telur.</li>
-                    <li>Setelah itu, aduk rata hingga semua bahan tercampur sempurna.</li>
-                    <li>Selanjutnya, ambil satu lembar kulit pangsit dan beri satu sendok isian di tengahnya.</li>
-                    <li>Kemudian, lipat kulit pangsit dan rekatkan tepinya dengan sedikit air.</li>
-                    <li>Setelah itu, panaskan minyak goreng di dalam wajan.</li>
-                    <li>Kemudian, goreng pangsit hingga berwarna kuning keemasan dan renyah.</li>
-                    <li>Selanjutnya, angkat pangsit dan tiriskan minyaknya.</li>
-                    <li>Terakhir, sajikan pangsit ikan tongkol dengan saus sambal atau mayones.</li>
-                </ol>
-                
-                <img src="https://images.unsplash.com/photo-1587334941825-1119550a29ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Pangsit Ikan Tongkol" class="recipe-image">
-            </section>
+            <div class="hero-content">
+                <h1 class="floating">Selamat Datang di Web Kelompok 1</h1>
+                <p>Website ini dibuat sebagai media presentasi hasil kerja kelompok kami dalam pembelajaran khususnya teks prosedur. Di dalamnya tersedia informasi lengkap tentang pembuatan nugget ikan tongkol — mulai dari bahan, langkah-langkah, dokumentasi, hingga profil kami.</p>
+                <a href="#" class="btn" data-target="ingredients">Mulai Jelajahi</a>
+            </div>
         </div>
-    </main>
-    
+    </section>
+
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Proyek Kami</h2>
+            </div>
+            <div class="features">
+                <div class="feature-card floating">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Teks Prosedur</h3>
+                    <p>Mempelajari dan mempraktikkan pembuatan teks prosedur melalui pembuatan nugget ikan tongkol.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 0.2s;">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Resep Praktis</h3>
+                    <p>Resep nugget ikan tongkol yang mudah diikuti dengan bahan-bahan yang terjangkau.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 0.4s;">
+                    <i class="fas fa-users"></i>
+                    <h3>Kerja Kelompok</h3>
+                    <p>Kolaborasi efektif antara 6 anggota kelompok untuk menyelesaikan proyek ini.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile">
+        <div class="container">
+            <div class="section-title">
+                <h2>Profil Kelompok 1 - Kelas IX C</h2>
+            </div>
+            <div class="profile-container">
+                <p>Kelompok kami terdiri dari 6 siswa yang berkontribusi aktif dalam pembuatan tugas ini.</p>
+                
+                <div class="motto">
+                    Kerja keras, hasil cerdas!
+                </div>
+                
+                <div class="members">
+                    <div class="member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-name">I Putu Cahya Pradnyan Perdana</div>
+                    </div>
+                    <div class="member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-name">I Ketut Aris</div>
+                    </div>
+                    <div class="member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-name">Ni Kadek Lestira Depi</div>
+                    </div>
+                    <div class="member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-name">Ni Ketut Merwi</div>
+                    </div>
+                    <div class="member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-name">Ni Kadek Dewi Natalia</div>
+                    </div>
+                    <div class="member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-name">Ni Made Linatari</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dokumentasi Kegiatan Kelompok 1</h2>
+            </div>
+            <div class="gallery-container">
+                <p class="gallery-description">Proses pembuatan nugget kami dokumentasikan dalam bentuk foto dan video. Klik link berikut untuk melihat lebih lengkap.</p>
+                
+                <div class="gallery-placeholder">
+                    <div class="gallery-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div class="gallery-text">Dokumentasi Proyek Nugget Ikan Tongkol</div>
+                    <div class="gallery-subtext">
+                        Dokumentasi lengkap proses pembuatan nugget ikan tongkol tersedia di Google Drive. 
+                        Klik tombol di bawah untuk mengakses galeri foto dan video kegiatan kami.
+                    </div>
+                    <a href="https://drive.google.com/file/d/1qqWvBGPT5NPTurAsjA1GME23VFFyqiOR/view?usp=drivesdk" class="btn" target="_blank">Buka Galeri Lengkap</a>
+                </div>
+                
+                <div class="gallery-link">
+                    <p style="margin-bottom: 20px; color: var(--text); opacity: 0.8;">Atau salin link berikut:</p>
+                    <div style="background: var(--light); padding: 15px; border-radius: 10px; font-family: monospace; word-break: break-all; margin-bottom: 20px;">
+                        https://drive.google.com/file/d/1qqWvBGPT5NPTurAsjA1GME23VFFyqiOR/view?usp=drivesdk
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ingredients Section -->
+    <section id="ingredients">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bahan-Bahan Pembuatan Nugget Ikan Tongkol</h2>
+            </div>
+            <div class="ingredients-container">
+                <div class="ingredient-card">
+                    <ul class="ingredient-list">
+                        <li><i class="fas fa-check-circle"></i> 300 gram ikan tongkol rebus</li>
+                        <li><i class="fas fa-check-circle"></i> 2 siung bawang putih (haluskan)</li>
+                        <li><i class="fas fa-check-circle"></i> 1 butir telur</li>
+                        <li><i class="fas fa-check-circle"></i> 1 batang daun bawang, iris</li>
+                        <li><i class="fas fa-check-circle"></i> 2 sdm tepung terigu</li>
+                        <li><i class="fas fa-check-circle"></i> 1 sdm tepung maizena</li>
+                        <li><i class="fas fa-check-circle"></i> ½ sdt garam</li>
+                        <li><i class="fas fa-check-circle"></i> ½ sdt merica</li>
+                        <li><i class="fas fa-check-circle"></i> Tepung panir secukupnya</li>
+                        <li><i class="fas fa-check-circle"></i> Minyak goreng untuk menggoreng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section id="steps">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cara Membuat Nugget Ikan Tongkol</h2>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Haluskan Ikan Tongkol</h3>
+                        <p>Haluskan ikan tongkol yang sudah direbus.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Campur Bahan</h3>
+                        <p>Campur semua bahan (bawang putih, daun bawang, telur, bumbu, tepung).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Aduk Rata</h3>
+                        <p>Aduk rata hingga adonan menyatu.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Kukus Adonan</h3>
+                        <p>Tuang ke loyang, ratakan, lalu kukus ±20 menit.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Potong Kecil</h3>
+                        <p>Dinginkan lalu potong kecil sesuai selera.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Balur Tepung Panir</h3>
+                        <p>Gulingkan potongan dalam tepung panir.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h3>Goreng Hingga Matang</h3>
+                        <p>Goreng hingga kuning keemasan.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <h3>Sajikan</h3>
+                        <p>Sajikan hangat dengan saus favorit!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kritik & Saran</h2>
+            </div>
+            <div class="contact-container">
+                <p style="text-align: center; margin-bottom: 40px;">Berikan pendapatmu tentang web kami!</p>
+                
+                <div class="contact-form">
+                    <form id="suggestionForm">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 Kelompok 1 - Tugas Teks Prosedur Pangsit Ikan Tongkol</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                <div class="footer-logo">
+                    <i class="fas fa-fish"></i> Nugget Ikan Tongkol
                 </div>
+                <p>Web ini dibuat oleh Kelompok 1 – Kelas IX C</p>
+                <p>Tugas Kokurikuler SMP Negeri 6 Amlapura</p>
             </div>
         </div>
     </footer>
-    
+
     <script>
-        // Fungsi untuk menampilkan halaman yang dipilih
-        function showPage(pageId) {
-            // Sembunyikan semua halaman
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Tampilkan halaman yang dipilih
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update navigasi aktif
+        // Loading Animation
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navigation
+        document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            const hamburger = document.getElementById('hamburger');
+            const navLinksContainer = document.getElementById('navLinks');
+            
+            // Navigation click handler
             navLinks.forEach(link => {
-                link.classList.remove('active');
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and sections
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked link and corresponding section
+                    this.classList.add('active');
+                    const targetId = this.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                    
+                    // Close mobile menu if open
+                    if (navLinksContainer.classList.contains('active')) {
+                        navLinksContainer.classList.remove('active');
+                    }
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
             });
             
-            event.target.classList.add('active');
-        }
-        
-        // Membuat partikel animasi
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
+            // Hamburger menu toggle
+            hamburger.addEventListener('click', function() {
+                navLinksContainer.classList.toggle('active');
+            });
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
+            // Contact form submission
+            const suggestionForm = document.getElementById('suggestionForm');
+            suggestionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                // Ukuran dan posisi acak
-                const size = Math.random() * 20 + 5;
-                const posX = Math.random() * 100;
-                const delay = Math.random() * 15;
+                const name = document.getElementById('name').value;
+                const message = document.getElementById('message').value;
                 
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.animationDelay = `${delay}s`;
+                // Format WhatsApp message
+                const whatsappMessage = `Halo, saya ${name}. ${message}`;
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const phoneNumber = "6281337305581";
                 
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Inisialisasi partikel saat halaman dimuat
-        window.addEventListener('DOMContentLoaded', () => {
-            createParticles();
+                // Open WhatsApp with pre-filled message
+                window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+                
+                // Reset form
+                suggestionForm.reset();
+                
+                // Show confirmation
+                alert('Terima kasih atas saran Anda! Akan dibuka aplikasi WhatsApp.');
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            });
         });
     </script>
 </body>
