@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nugget Ikan Tongkol - Kelompok 1</title>
+    <title>Kelompok 1 IX C - Nugget Ikan Tongkol</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
         /* Reset dan Base Styles */
         * {
@@ -16,21 +16,38 @@
         }
 
         :root {
-            --primary: #FF9E44;
-            --primary-dark: #E67E22;
-            --secondary: #2ECC71;
-            --accent: #FF6B6B;
-            --light: #FFF9E6;
-            --dark: #2C3E50;
-            --gray: #ECF0F1;
-            --text: #34495E;
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary: #00C9B1;
+            --accent: #FFD166;
+            --light: #FFF9F0;
+            --dark: #1A1F2B;
+            --gray: #F8F9FA;
+            --text: #2D3748;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark), #00A693);
         }
 
         body {
-            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 201, 177, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 209, 102, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
 
         .container {
@@ -43,55 +60,67 @@
         /* Header & Navigation */
         header {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            padding: 5px 0;
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 20px 0;
+            transition: all 0.4s;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: bold;
+            gap: 12px;
+            font-weight: 800;
             color: var(--primary-dark);
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .logo i {
             color: var(--secondary);
-            font-size: 1.6rem;
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 35px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
-            font-weight: 500;
-            transition: all 0.3s;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            padding: 5px 0;
+            padding: 8px 0;
+            font-size: 1.05rem;
         }
 
         .nav-links a:hover {
             color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .nav-links a.active {
@@ -104,9 +133,10 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .nav-links a:hover::after,
@@ -117,19 +147,27 @@
         .hamburger {
             display: none;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--dark);
+            transition: all 0.3s;
+        }
+
+        .hamburger:hover {
+            color: var(--primary);
+            transform: scale(1.1);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background: 
+                linear-gradient(135deg, rgba(26, 31, 43, 0.9) 0%, rgba(26, 31, 43, 0.95) 100%),
+                url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
             text-align: center;
-            padding: 180px 0 120px;
+            padding: 200px 0 150px;
             position: relative;
             overflow: hidden;
         }
@@ -137,77 +175,112 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at center, rgba(255, 107, 53, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 201, 177, 0.15) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
-            max-width: 800px;
+            z-index: 2;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 4rem;
+            margin-bottom: 25px;
             font-family: 'Playfair Display', serif;
+            font-weight: 900;
             animation: fadeInUp 1s ease;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            line-height: 1.2;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
+            font-size: 1.4rem;
+            margin-bottom: 50px;
             animation: fadeInUp 1.5s ease;
             opacity: 0.9;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--gradient);
             color: white;
-            padding: 14px 35px;
+            padding: 18px 45px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.4s;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: none;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 155, 68, 0.3);
+            box-shadow: 
+                0 10px 30px rgba(255, 107, 53, 0.4),
+                0 5px 15px rgba(0, 201, 177, 0.3);
             position: relative;
             overflow: hidden;
-            font-size: 1rem;
+            font-size: 1.1rem;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(255, 155, 68, 0.4);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(255, 107, 53, 0.5),
+                0 10px 25px rgba(0, 201, 177, 0.4);
         }
 
-        .btn::after {
+        .btn::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: left 0.7s;
         }
 
-        .btn:hover::after {
+        .btn:hover::before {
             left: 100%;
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover i {
+            transform: translateX(5px);
         }
 
         /* Section Styles */
         section {
-            padding: 100px 0;
+            padding: 120px 0;
             display: none;
+            position: relative;
         }
 
         section.active {
@@ -217,16 +290,18 @@
 
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             position: relative;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
+            font-size: 3rem;
+            color: var(--dark);
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
             font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            position: relative;
         }
 
         .section-title h2::after {
@@ -235,30 +310,34 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
+            width: 120px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 5px;
         }
 
         /* Home Section */
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
 
         .feature-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 50px 35px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s;
+            box-shadow: 
+                0 15px 35px rgba(0,0,0,0.08),
+                0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             z-index: 1;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .feature-card::before {
@@ -268,192 +347,244 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--gradient);
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
         }
 
         .feature-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.15),
+                0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover::after {
+            opacity: 0.05;
         }
 
         .feature-card i {
-            font-size: 3rem;
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-size: 4rem;
+            margin-bottom: 30px;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
         }
 
         .feature-card h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--dark);
-            font-size: 1.4rem;
+            font-size: 1.6rem;
+            font-weight: 700;
         }
 
         .feature-card p {
             color: var(--text);
             opacity: 0.8;
+            font-size: 1.05rem;
         }
 
         /* Profile Section */
         .profile-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .motto {
-            background: linear-gradient(135deg, var(--light), white);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 40px 0;
-            font-style: italic;
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .profile-illustration {
+            width: 220px;
+            height: 220px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            color: white;
+            font-size: 5rem;
+            box-shadow: 
+                0 20px 40px rgba(255, 107, 53, 0.3),
+                0 10px 25px rgba(0, 201, 177, 0.2);
+            animation: pulse 2s infinite;
             position: relative;
-            font-size: 1.3rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary);
+            overflow: hidden;
         }
 
-        .motto::before, .motto::after {
-            content: '"';
-            font-size: 3rem;
-            color: var(--primary);
+        .profile-illustration::before {
+            content: '';
             position: absolute;
-            opacity: 0.3;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
         }
 
-        .motto::before {
-            top: 10px;
-            left: 15px;
-        }
-
-        .motto::after {
-            bottom: 10px;
-            right: 15px;
+        .profile-illustration:hover::before {
+            transform: rotate(45deg) translate(50%, 50%);
         }
 
         .members {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
         }
 
         .member {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
         }
 
         .member-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
         .member-name {
-            font-weight: 500;
+            font-weight: 600;
             color: var(--dark);
+            font-size: 1.2rem;
         }
 
         /* Gallery Section */
         .gallery-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
 
         .gallery-description {
-            font-size: 1.1rem;
-            margin-bottom: 50px;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
             color: var(--text);
-            max-width: 700px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0.8;
         }
 
-        .gallery-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--light), white);
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            border: 2px dashed var(--primary);
-            transition: all 0.4s;
+        .gallery-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
         }
 
-        .gallery-placeholder:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        .gallery-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
 
         .gallery-icon {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 25px;
+            margin: 0 auto 30px;
             color: white;
             font-size: 2.5rem;
-            animation: pulse 2s infinite;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
-        .gallery-text {
-            font-size: 1.2rem;
+        .gallery-card h3 {
             margin-bottom: 20px;
             color: var(--dark);
-            font-weight: 500;
+            font-size: 1.8rem;
+            font-weight: 700;
         }
 
-        .gallery-subtext {
+        .gallery-card p {
             color: var(--text);
             opacity: 0.8;
-            margin-bottom: 30px;
-            max-width: 500px;
-        }
-
-        .gallery-link {
-            text-align: center;
-            margin-top: 20px;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
         }
 
         /* Ingredients Section */
         .ingredients-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .ingredient-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .ingredient-card::before {
@@ -461,9 +592,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 8px;
+            width: 10px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            background: var(--gradient);
         }
 
         .ingredient-list {
@@ -471,15 +602,17 @@
         }
 
         .ingredient-list li {
-            padding: 12px 0;
-            border-bottom: 1px dashed #eee;
+            padding: 18px 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             transition: all 0.3s;
+            font-size: 1.1rem;
         }
 
         .ingredient-list li:hover {
-            padding-left: 10px;
+            padding-left: 15px;
+            transform: translateX(10px);
         }
 
         .ingredient-list li:last-child {
@@ -488,13 +621,18 @@
 
         .ingredient-list i {
             color: var(--secondary);
-            margin-right: 15px;
-            font-size: 1.1rem;
+            margin-right: 20px;
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+
+        .ingredient-list li:hover i {
+            transform: scale(1.2);
         }
 
         /* Steps Section */
         .steps-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             position: relative;
         }
@@ -504,120 +642,165 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            left: 40px;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-            border-radius: 2px;
+            left: 50px;
+            width: 6px;
+            background: var(--gradient);
+            border-radius: 3px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .step {
             display: flex;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             position: relative;
         }
 
         .step-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 100px;
+            height: 100px;
+            background: var(--gradient);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-right: 40px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-right: 50px;
             flex-shrink: 0;
             z-index: 1;
-            box-shadow: 0 10px 20px rgba(255, 155, 68, 0.3);
+            box-shadow: 
+                0 15px 35px rgba(255, 107, 53, 0.3),
+                0 10px 25px rgba(0, 201, 177, 0.2);
+            transition: all 0.4s;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .step-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
             flex: 1;
-            transition: all 0.3s;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .step-content:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateX(15px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
 
         .step-content h3 {
             color: var(--primary-dark);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .step-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         /* Contact Section */
         .contact-container {
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
+            margin-bottom: 12px;
+            font-weight: 600;
             color: var(--dark);
+            font-size: 1.1rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 15px 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
+            padding: 18px 25px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 15px;
+            font-size: 1.1rem;
             transition: all 0.3s;
-            background: #f9f9f9;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .form-control:focus {
             border-color: var(--primary);
             outline: none;
             background: white;
-            box-shadow: 0 0 0 3px rgba(255, 158, 68, 0.2);
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+            transform: translateY(-2px);
         }
 
         textarea.form-control {
-            min-height: 180px;
+            min-height: 200px;
             resize: vertical;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--dark), #1a2530);
+            background: linear-gradient(135deg, var(--dark), #0F1320);
             color: white;
             text-align: center;
-            padding: 50px 0 30px;
-            margin-top: 50px;
+            padding: 70px 0 40px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 201, 177, 0.1) 0%, transparent 50%);
         }
 
         .footer-content {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-logo {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-family: 'Playfair Display', serif;
-            margin-bottom: 10px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-logo i {
+            margin-right: 10px;
         }
 
         /* Animations */
@@ -629,7 +812,7 @@
         @keyframes fadeInUp {
             from { 
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to { 
                 opacity: 1;
@@ -650,8 +833,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--dark), #1a2530);
+            background: linear-gradient(135deg, var(--dark), #0F1320);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
@@ -664,26 +848,35 @@
         }
 
         .loader {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border: 5px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             border-top-color: var(--primary);
-            animation: spin 1s linear infinite;
+            border-right-color: var(--secondary);
+            animation: spin 1.5s linear infinite;
             position: relative;
+            margin-bottom: 30px;
         }
 
         .loader::after {
             content: '';
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
             border: 5px solid transparent;
             border-radius: 50%;
-            border-top-color: var(--secondary);
-            animation: spin 1.5s linear infinite;
+            border-top-color: var(--accent);
+            animation: spin 2s linear infinite;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
         }
 
         @keyframes spin {
@@ -697,19 +890,57 @@
         }
 
         @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 3.5rem;
             }
             
             .section-title h2 {
-                font-size: 2.2rem;
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                gap: 25px;
             }
         }
 
@@ -717,14 +948,15 @@
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 70px;
+                top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: white;
+                background: rgba(255, 255, 255, 0.98);
                 flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                border-radius: 0 0 15px 15px;
+                padding: 30px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+                border-radius: 0 0 25px 25px;
+                backdrop-filter: blur(20px);
             }
 
             .nav-links.active {
@@ -736,54 +968,73 @@
             }
 
             .hero {
-                padding: 150px 0 80px;
+                padding: 180px 0 120px;
             }
 
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
 
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             .steps-container::before {
-                left: 30px;
+                left: 40px;
             }
 
             .step-number {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-                margin-right: 25px;
+                width: 80px;
+                height: 80px;
+                font-size: 1.8rem;
+                margin-right: 35px;
             }
             
             section {
-                padding: 80px 0;
+                padding: 100px 0;
             }
             
-            .gallery-placeholder {
-                padding: 40px 25px;
+            .gallery-card, .contact-form {
+                padding: 40px 30px;
             }
             
             .gallery-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
+                width: 90px;
+                height: 90px;
+                font-size: 2.2rem;
             }
         }
 
         @media (max-width: 576px) {
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
             
             .section-title h2 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
             
-            .feature-card, .ingredient-card, .contact-form {
-                padding: 25px 20px;
+            .feature-card, .ingredient-card {
+                padding: 40px 25px;
+            }
+            
+            .btn {
+                padding: 16px 35px;
+                font-size: 1rem;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 25px;
+            }
+            
+            .steps-container::before {
+                display: none;
             }
         }
     </style>
@@ -792,15 +1043,19 @@
     <!-- Loading Animation -->
     <div class="loading" id="loading">
         <div class="loader"></div>
+        <div class="loading-text">MEMUAT</div>
     </div>
 
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
     <!-- Header & Navigation -->
-    <header>
+    <header id="header">
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
                     <i class="fas fa-fish"></i>
-                    <span>Nugget Ikan Tongkol</span>
+                    <span>Kelompok 1 IX C</span>
                 </div>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#" class="nav-link active" data-target="home">Beranda</a></li>
@@ -821,9 +1076,12 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="floating">Selamat Datang di Web Kelompok 1</h1>
-                <p>Website ini dibuat sebagai media presentasi hasil kerja kelompok kami dalam pembelajaran khususnya teks prosedur. Di dalamnya tersedia informasi lengkap tentang pembuatan nugget ikan tongkol — mulai dari bahan, langkah-langkah, dokumentasi, hingga profil kami.</p>
-                <a href="#" class="btn" data-target="ingredients">Mulai Jelajahi</a>
+                <h1 class="floating">Selamat Datang di Web Kelompok 1 IX C</h1>
+                <p>Web ini dibuat untuk menyajikan hasil kerja kelompok kami dalam bentuk teks prosedur, mulai dari bahan, langkah-langkah, hingga dokumentasi tugas kokurikuler.</p>
+                <a href="#" class="btn" data-target="ingredients">
+                    <span>Mulai Jelajahi</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -858,13 +1116,13 @@
     <section id="profile">
         <div class="container">
             <div class="section-title">
-                <h2>Profil Kelompok 1 - Kelas IX C</h2>
+                <h2>Profil Kelompok 1</h2>
             </div>
             <div class="profile-container">
-                <p>Kelompok kami terdiri dari 6 siswa yang berkontribusi aktif dalam pembuatan tugas ini.</p>
-                
-                <div class="motto">
-                    Kerja keras, hasil cerdas!
+                <div class="profile-header">
+                    <div class="profile-illustration">
+                        <i class="fas fa-users"></i>
+                    </div>
                 </div>
                 
                 <div class="members">
@@ -913,27 +1171,34 @@
     <section id="gallery">
         <div class="container">
             <div class="section-title">
-                <h2>Dokumentasi Kegiatan Kelompok 1</h2>
+                <h2>Galeri Dokumentasi dan Pamflet Kelompok 1</h2>
             </div>
             <div class="gallery-container">
-                <p class="gallery-description">Proses pembuatan nugget kami dokumentasikan dalam bentuk foto dan video. Klik link berikut untuk melihat lebih lengkap.</p>
+                <p class="gallery-description">Dokumentasi tugas kelompok kami dapat disimak melalui link berikut:</p>
                 
-                <div class="gallery-placeholder">
-                    <div class="gallery-icon">
-                        <i class="fas fa-images"></i>
+                <div class="gallery-links">
+                    <div class="gallery-card">
+                        <div class="gallery-icon">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <h3>Dokumentasi Tugas</h3>
+                        <p>Lihat dokumentasi lengkap proses pembuatan nugget ikan tongkol oleh kelompok kami.</p>
+                        <a href="https://drive.google.com/file/d/1OnzHOmv4wJcbIFyTueNJwn5em34oc60b/view?usp=drivesdk" class="btn" target="_blank">
+                            <span>Buka Dokumentasi</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
-                    <div class="gallery-text">Dokumentasi Proyek Nugget Ikan Tongkol</div>
-                    <div class="gallery-subtext">
-                        Dokumentasi lengkap proses pembuatan nugget ikan tongkol tersedia di Google Drive. 
-                        Klik tombol di bawah untuk mengakses galeri foto dan video kegiatan kami.
-                    </div>
-                    <a href="https://drive.google.com/file/d/1qqWvBGPT5NPTurAsjA1GME23VFFyqiOR/view?usp=drivesdk" class="btn" target="_blank">Buka Galeri Lengkap</a>
-                </div>
-                
-                <div class="gallery-link">
-                    <p style="margin-bottom: 20px; color: var(--text); opacity: 0.8;">Atau salin link berikut:</p>
-                    <div style="background: var(--light); padding: 15px; border-radius: 10px; font-family: monospace; word-break: break-all; margin-bottom: 20px;">
-                        https://drive.google.com/file/d/1qqWvBGPT5NPTurAsjA1GME23VFFyqiOR/view?usp=drivesdk
+                    
+                    <div class="gallery-card">
+                        <div class="gallery-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Pamflet Produk</h3>
+                        <p>Lihat pamflet produk nugget ikan tongkol yang telah kami buat.</p>
+                        <a href="https://drive.google.com/file/d/1gIrWLXE5a3WOecNeXMWYVS7X8z61hVzZ/view?usp=drivesdk" class="btn" target="_blank">
+                            <span>Buka Pamflet</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -948,17 +1213,15 @@
             </div>
             <div class="ingredients-container">
                 <div class="ingredient-card">
+                    <h3 style="margin-bottom: 25px; color: var(--dark); font-size: 1.8rem; font-weight: 700;">Bahan Utama:</h3>
                     <ul class="ingredient-list">
-                        <li><i class="fas fa-check-circle"></i> 300 gram ikan tongkol rebus</li>
-                        <li><i class="fas fa-check-circle"></i> 2 siung bawang putih (haluskan)</li>
-                        <li><i class="fas fa-check-circle"></i> 1 butir telur</li>
-                        <li><i class="fas fa-check-circle"></i> 1 batang daun bawang, iris</li>
-                        <li><i class="fas fa-check-circle"></i> 2 sdm tepung terigu</li>
-                        <li><i class="fas fa-check-circle"></i> 1 sdm tepung maizena</li>
-                        <li><i class="fas fa-check-circle"></i> ½ sdt garam</li>
-                        <li><i class="fas fa-check-circle"></i> ½ sdt merica</li>
-                        <li><i class="fas fa-check-circle"></i> Tepung panir secukupnya</li>
-                        <li><i class="fas fa-check-circle"></i> Minyak goreng untuk menggoreng</li>
+                        <li><i class="fas fa-check-circle"></i> 3 ikan tongkol (sudah diiris & dibersihkan)</li>
+                        <li><i class="fas fa-check-circle"></i> 3 butir telur ayam</li>
+                        <li><i class="fas fa-check-circle"></i> 3 siung bawang putih</li>
+                        <li><i class="fas fa-check-circle"></i> 5 sdm tepung panir</li>
+                        <li><i class="fas fa-check-circle"></i> 6 sdm tepung tapioka</li>
+                        <li><i class="fas fa-check-circle"></i> Garam, gula, dan lada bubuk secukupnya</li>
+                        <li><i class="fas fa-check-circle"></i> Minyak goreng secukupnya</li>
                     </ul>
                 </div>
             </div>
@@ -969,63 +1232,84 @@
     <section id="steps">
         <div class="container">
             <div class="section-title">
-                <h2>Cara Membuat Nugget Ikan Tongkol</h2>
+                <h2>Langkah-Langkah Membuat Nugget Ikan Tongkol</h2>
             </div>
             <div class="steps-container">
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Haluskan Ikan Tongkol</h3>
-                        <p>Haluskan ikan tongkol yang sudah direbus.</p>
+                        <h3>Haluskan Bahan</h3>
+                        <p>Masukkan ikan, bawang putih, garam, gula, dan lada ke blender. Haluskan hingga rata.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h3>Campur Bahan</h3>
-                        <p>Campur semua bahan (bawang putih, daun bawang, telur, bumbu, tepung).</p>
+                        <h3>Campur Bahan Lain</h3>
+                        <p>Tambahkan 2 butir telur, tepung tapioka, dan tepung panir. Blender kembali.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3>Aduk Rata</h3>
-                        <p>Aduk rata hingga adonan menyatu.</p>
+                        <h3>Siapkan Loyang</h3>
+                        <p>Oles loyang dengan minyak goreng, tuang adonan ke dalamnya secara merata.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-content">
                         <h3>Kukus Adonan</h3>
-                        <p>Tuang ke loyang, ratakan, lalu kukus ±20 menit.</p>
+                        <p>Kukus selama 25–30 menit.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">5</div>
                     <div class="step-content">
-                        <h3>Potong Kecil</h3>
-                        <p>Dinginkan lalu potong kecil sesuai selera.</p>
+                        <h3>Dinginkan</h3>
+                        <p>Setelah matang, dinginkan adonan.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">6</div>
                     <div class="step-content">
-                        <h3>Balur Tepung Panir</h3>
-                        <p>Gulingkan potongan dalam tepung panir.</p>
+                        <h3>Siapkan Bahan Pelapis</h3>
+                        <p>Kocok 1 butir telur, siapkan tepung panir di wadah lain.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">7</div>
                     <div class="step-content">
-                        <h3>Goreng Hingga Matang</h3>
-                        <p>Goreng hingga kuning keemasan.</p>
+                        <h3>Potong Adonan</h3>
+                        <p>Potong-potong adonan sesuai selera.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">8</div>
                     <div class="step-content">
+                        <h3>Balur dengan Pelapis</h3>
+                        <p>Celupkan potongan ke telur, lalu balur dengan tepung panir.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">9</div>
+                    <div class="step-content">
+                        <h3>Panaskan Minyak</h3>
+                        <p>Panaskan minyak dalam wajan.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">10</div>
+                    <div class="step-content">
+                        <h3>Goreng Nugget</h3>
+                        <p>Goreng hingga berwarna keemasan.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">11</div>
+                    <div class="step-content">
                         <h3>Sajikan</h3>
-                        <p>Sajikan hangat dengan saus favorit!</p>
+                        <p>Sajikan dengan saus sambal atau mayones.</p>
                     </div>
                 </div>
             </div>
@@ -1039,19 +1323,22 @@
                 <h2>Kritik & Saran</h2>
             </div>
             <div class="contact-container">
-                <p style="text-align: center; margin-bottom: 40px;">Berikan pendapatmu tentang web kami!</p>
+                <p style="text-align: center; margin-bottom: 50px; font-size: 1.2rem; opacity: 0.8;">Berikan pendapatmu tentang web kami!</p>
                 
                 <div class="contact-form">
                     <form id="suggestionForm">
                         <div class="form-group">
                             <label for="name">Nama</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" class="form-control" placeholder="Masukkan nama Anda" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Pesan</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <textarea id="message" class="form-control" placeholder="Tuliskan kritik dan saran Anda di sini..." required></textarea>
                         </div>
-                        <button type="submit" class="btn">Kirim Pesan</button>
+                        <button type="submit" class="btn">
+                            <span>Kirim Pesan</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -1063,7 +1350,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <i class="fas fa-fish"></i> Nugget Ikan Tongkol
+                    <i class="fas fa-fish"></i> Kelompok 1 IX C
                 </div>
                 <p>Web ini dibuat oleh Kelompok 1 – Kelas IX C</p>
                 <p>Tugas Kokurikuler SMP Negeri 6 Amlapura</p>
@@ -1077,15 +1364,43 @@
             const loading = document.getElementById('loading');
             setTimeout(() => {
                 loading.classList.add('hidden');
-            }, 1500);
+            }, 2000);
         });
+
+        // Create Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 8 + 2;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 20 + 10;
+                const animationDelay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${animationDelay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
 
         // Navigation
         document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section');
             const hamburger = document.getElementById('hamburger');
             const navLinksContainer = document.getElementById('navLinks');
+            const header = document.getElementById('header');
             
             // Navigation click handler
             navLinks.forEach(link => {
@@ -1114,6 +1429,9 @@
             // Hamburger menu toggle
             hamburger.addEventListener('click', function() {
                 navLinksContainer.classList.toggle('active');
+                this.innerHTML = navLinksContainer.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
             });
             
             // Contact form submission
@@ -1141,14 +1459,16 @@
 
             // Header scroll effect
             window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
                 if (window.scrollY > 100) {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                    header.classList.add('scrolled');
                 } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.95)';
-                    header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                    header.classList.remove('scrolled');
                 }
+            });
+
+            // Add floating animation to feature cards with delay
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
             });
         });
     </script>
